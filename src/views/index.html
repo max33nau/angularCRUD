@@ -4,24 +4,38 @@
 	<head>
 		<title>Angular Crud</title>
 		<meta charset="UTF-8">
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.js">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
 		<script type="text/javascript" src='js/vendor/angular.min.js'></script>
 		<script type="text/javascript" src='js/vendor/angular-route.min.js'></script>
 		<script type="text/javascript" src='controllers/main-controller.js'></script>
+		<script type="text/javascript" src='controllers/player-controller.js'></script>
 	</head>
 
-	<body ng-app='myApp'>
-		<header>
-			<h3 class='text-center'> Basketball Player Info App </h3>
-		</header>
+	<body ng-app='myApp' ng-controller='mainCtrl'>
 
-		<main ng-view> </main>
-
-		<footer>
-			<p> @MaxJacobsen </p>
-		</footer>
-
+			<nav class='navbar navbar-inverse'>
+				<div class="container-fluid">
+					<div class='navbar-header navbar-brand'> Player Info App </div>
+					<ul class='nav navbar-nav'>
+						<li><a href="#/">Home</a></li>
+						<li><a href="#/searchPlayer">Search For Player</a></li>
+						<li><a href="#/login">Login</a></li>
+						<li><a href="#/logout">Logout</a></li>
+						<li><a href="#/register">Register</a></li>
+					</ul>
+				</div>
+			</nav>
+	
+			<div class='container'>
+				<main ng-view> </main>
+			</div>
+			<footer class='panel-footer footer'>
+				<p class='text-center'> @MaxJacobsen </p>
+			</footer>
+		</div>
 	</body>
 
 </html>
