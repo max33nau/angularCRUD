@@ -1,8 +1,6 @@
 "use strict";
-
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
 
 /* FUNCTIONS FOR SCHEMA VALIDATION */
 function toUpper(value) {

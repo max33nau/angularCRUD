@@ -5,22 +5,20 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const my = require('./configDBandServer');
-const dbData = require('./database');
-const stats = require('./routes/routes-stats');
-const register = require('./routes/routes-register');
-const login = require('./routes/routes-login');
-const logout = require('./routes/routes-logout');
-const index = require('./routes/routes-home');
+const my = require('./config/configDBandServer');
+const dbData = require('./config/database');
+const mainPage = require('./routes/route-main');
 
 var app = express();
 
 /**** VIEWS ****/
-app.set('views', path.join(__dirname, 'views'));
+var viewPath = path.join(__dirname, 'views');
+app.set('views', viewPath);
 app.set('view engine', 'jade');
+app.use( express.static( viewPath, { redirect : false } ) );
 
 /**** PUBLIC ****/
-var publicPath = path.join( __dirname, 'www/public' );
+var publicPath = path.join( __dirname, 'public' );
 app.use(express.static( publicPath, { redirect : false } ) );
 
 
@@ -34,11 +32,7 @@ app.use(morgan('dev'));
 
 
 /**** ROUTES ****/
-app.use('/player', stats());
-app.use('/register', register());
-app.use('/login', login());
-app.use('/logout', logout());
-app.use('/home', index());
+app.use('/', mainPage());
 
 /**** ERROR HANDLING ****/
 app.use(function(request,response,next) {
