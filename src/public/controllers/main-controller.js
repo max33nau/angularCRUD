@@ -9,11 +9,19 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider) {
       templateUrl: 'playerSearch.html',
       controller: 'playerCtrl'
     })
+    .when('/login', {
+      templateUrl: 'login.html',
+      controller: 'loginCtrl'
+    })
+    .when('/register', {
+      templateUrl: 'register.html',
+      controller: 'registerCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
 }])
 
 app.controller('mainCtrl', ['$scope', '$http', function($scope,$http){
-  
+
 }]);
