@@ -8,9 +8,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/main.css">
+
 		<script type="text/javascript" src='js/vendor/angular.min.js'></script>
 		<script type="text/javascript" src='js/vendor/angular-route.min.js'></script>
 		<script type="text/javascript" src='controllers/main-controller.js'></script>
+		<script type="text/javascript" src='controllers/register-controller.js'></script>
+		<script type="text/javascript" src='controllers/login-controller.js'></script>
 		<script type="text/javascript" src='controllers/player-controller.js'></script>
 	</head>
 
@@ -23,13 +26,14 @@
 						<li><a href="#/">Home</a></li>
 						<li><a href="#/searchPlayer">Search For Player</a></li>
 						<li><a href="#/login">Login</a></li>
-						<li ><a href='#/'ng-click=logout()>Logout</a></li>
 						<li><a href="#/register">Register</a></li>
+						<li ><a href='#/'ng-click=logout() ng-show='root.userLoggedIn'>Logout</a></li>
 					</ul>
 				</div>
 			</nav>
 
 			<div class='container'>
+				<div class='text-right' ng-show='root.userLoggedIn'> You are currently signed in as <span id='userName'>{{root.user}} </span> </div>
 				<main ng-view> </main>
 			</div>
 			<footer class='panel-footer footer'>

@@ -1,9 +1,14 @@
-<h3 class='text-center'> NBA Player Search </h3>
-<div class='text-center'>
-  <input type='text' name='name'> </input>
-  <button class='btn-primary' ng-click=player.search()  value='Search'>Search For Player</button>
-  <br>
-  <br>
-  <br>
-  <button class='btn-success' ng-click=player.showAll()  value='Search'>Show All Player Names</button>
+
+<div ng-show='root.notAuthorized'> You must be logged in to see this content </div>
+
+<div ng-hide ='root.notAuthorized'>
+  <h3 class='text-center'> NBA Player Search </h3>
+  <div class='text-center'>
+    <input type='text' name='name'> </input>
+    <button class='btn-primary' ng-click=player.search()  value='Search'>Search For Player</button>
+    <br>
+    <br>
+    <br>
+    <button class='btn-success' ng-click=player.showAll()  value='Search'>Show All Player Names</button>
+  </div>
 </div>

@@ -3,6 +3,15 @@
   max-width: 100%;
 }
 
+.result {
+  width: 200px;
+  max-width: 100%;
+}
+
+#userName {
+  font-weight: bolder;
+  color: red;
+}
 
 footer {
   position: absolute;
