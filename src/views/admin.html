@@ -1,1 +1,35 @@
-<h1> YOU MADE IT </h1>
+<div ng-click='addplayer = true'> Add Player </div>
+<div ng-click='addplayer = false'> Edit Existing Players </div>
+<fieldset ng-show='addplayer'>
+  <legend> Add Player </legend>
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" ng-model='playerInfo.name' class="form-control input-text" />
+  </div>
+  <div class="form-group">
+    <label>Team:</label>
+    <input type="text" ng-model='playerInfo.team' class="form-control input-text" />
+  </div>
+  <div class="form-group">
+    <label>Age:</label>
+    <input type="text" ng-model='playerInfo.age' class="form-control input-text" />
+  </div>
+  <div class="form-group">
+    <label>Position:</label>
+    <input type="text" ng-model='playerInfo.position' class="form-control input-text" />
+  </div>
+  <div class="form-group">
+    Rookie:
+    <label class="radio-inline"><input type="radio" ng-model='playerInfo.rookie' value="true"></input> True </label>
+    <label class="radio-inline"><input type="radio" ng-model='playerInfo.rookie' value="false"></input> False </label>
+  </div>
+  <div class="form-group">
+    <label>Years in The League:</label>
+    <input type="text" ng-model='playerInfo.yearsInTheLeauge' class="form-control input-text" />
+  </div>
+  <br>
+  <button ng-click='admin.createPlayer()' class="btn btn-default">Create Player</button>
+</fieldset>
+<div ng-hide='addplayer'> EDIT PLAYERS </div>
+<br>
+<p class='bg-danger result'> {{error}} </p>

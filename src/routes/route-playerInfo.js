@@ -7,7 +7,7 @@ module.exports = function searchPlayers(authenticat) {
   // router.get('/find', playerHandler.getPlayerByName);
   router.get('/', authenticat.tokenAuth, playerHandler.getAll);
   // router.get('/:id', playerHandler.getPlayerById);
-  // router.post('/', playerHandler.createPlayer);
+  router.post('/', playerHandler.createPlayer);
   // router.put('/:id', playerHandler.updateWholeObject);
   // router.patch('/:id', playerHandler.updatePlayerInfo);
   // router.delete('/:id', playerHandler.removePlayer);
