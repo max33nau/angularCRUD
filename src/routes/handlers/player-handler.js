@@ -1,18 +1,21 @@
 'use strict';
 var mongoose = require('mongoose');
-var models = require('.././models');
+var Player = require('../.././models/model-playerinfo');
 var player_handler = {};
-var Player = models.player;
 mongoose.Promise = Promise;
 
 player_handler.getAll = function(request, response) {
-  Player.find({}).sort({ name: 'asc' })
-    .then(function (players) {
-      response.json(players);
-    })
-    .catch(function (error) {
-      response.send(error);
-    });
+  var players = {
+    name: 'Max'
+  }
+  response.json(players);
+  // Player.find({}).sort({ name: 'asc' })
+  //   .then(function (players) {
+  //     response.json(players);
+  //   })
+  //   .catch(function (error) {
+  //     response.send(error);
+  //   });
   };
 
 // player_handler.getPlayerById = function(request, response) {

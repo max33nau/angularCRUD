@@ -8,6 +8,7 @@ const session = require('express-session');
 const my = require('./config/configDBandServer');
 const dbData = require('./config/database');
 const mainPage = require('./routes/route-main');
+const searchPlayers = require('./routes/route-playerInfo');
 
 const Authenticat = require('authenticat');
 const connection = dbData.mongoose.createConnection(my.dbConnect + my.dbName);
@@ -40,6 +41,7 @@ const authenticat = new Authenticat(connection);
    /**** ROUTES ****/
    app.use('/user', authenticat.router); // Authentication
    app.use('/', mainPage());
+   app.use('/players', searchPlayers(authenticat));
 
    /**** ERROR HANDLING ****/
    app.use(function(request,response,next) {

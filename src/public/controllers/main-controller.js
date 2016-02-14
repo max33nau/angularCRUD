@@ -37,6 +37,9 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider) {
       $rootScope.root.notAuthorized = false;
       $rootScope.root.userLoggedIn = true;
       $rootScope.root.user = currentUser;
+      if(token && currentUser === 'admin') {
+        $rootScope.root.admin = true;
+      }
     } else {
       $rootScope.root.notAuthorized = false;
       $rootScope.root.user = '';
@@ -47,8 +50,7 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider) {
 
 app.controller('mainCtrl', ['$rootScope','$scope', '$http', function($rootScope,$scope,$http){
   $scope.logout = function() {
-    $rootScope.root.user = '';
-    $rootScope.root.userLoggedIn = false;
+    $rootScope.root = null;
     localStorage.clear();
   }
 }]);
