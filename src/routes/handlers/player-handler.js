@@ -14,18 +14,8 @@ player_handler.getAll = function(request, response) {
     });
   };
 
-player_handler.getPlayerById = function(request, response) {
-  Player.findById(request.params.id).then(function (player) {
-    if (player) {
-      response.send(player);
-    }
-  }).then(null, function (error) {
-    response.send(error);
-  });
-};
-
 player_handler.getPlayerByName = function(request, response) {
-  var playerName = request.query.name.toUpperCase();
+  var playerName = request.params.playerName.toUpperCase();
   Player.find({ name: playerName } ).then(function (player) {
 
   }).then(null, function (error) {
@@ -50,56 +40,24 @@ player_handler.createPlayer = function(request, response) {
     });
 };
 
-player_handler.updateWholeObject = function(request, response) {
-  Player.findById(request.params.id).then(function (player) {
-    if (player) {
-      var playerkeys = ['name', 'team', 'age', 'height', 'position', 'rookie', 'numberOfGamesPlayed', 'totals', 'average'];
-      for (var ii in playerkeys) {
-        if (request.body[playerkeys[ii]]) {
-          player[playerkeys[ii]] = request.body[playerkeys[ii]];
-        } else {
-          player[playerkeys[ii]] = null;
-        }
-      }
-      return player;
-    }
-  }).then(function (player) {
-    if (player) {
-      player.save(function (error, player) {
-        if (!error) {
-          response.send(player);
-        } else {
-          response.send(error);
-        }
-      });
-    }
-  }).then(null, function (error) {
-    if (error) {
+player_handler.updatePlayerInfo = function(request, response) {
+  Player.findByIdAndUpdate(request.params.id, request.body)
+    .then(function (player) {
+      response.send(player);
+    })
+    .catch(function (error) {
       response.send(error);
-    }
-  });
-};
-
-player_handler.updatePlayerInfo= function(request, response) {
-  Player.update({ _id: request.params.id }, { $set: request.body }, function (error) {
-    if (error) {
-      response.send(error);
-    } else {
-      response.send('update data was a success');
-    }
-  });
+    });
 };
 
 player_handler.removePlayer = function(request, response) {
-  Player.remove({ _id: request.params.id }).then(function (player, error) {
-    if (player) {
+  Player.remove({ _id: request.params.id })
+    .then(function (player) {
       response.send(request.params.id + ' was removed');
-    }
-  }).then(null, function (error) {
-    if (error) {
+    })
+    .catch(function (error) {
       response.send(error);
-    }
-  });
+    });
 };
 
 module.exports = player_handler;

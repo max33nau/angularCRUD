@@ -17,8 +17,11 @@
   color: red;
 }
 
+.navInline {
+  margin-bottom: 5px;
+}
 footer {
-  position: fixed;
-  bottom: 5px;
+  margin-top: 20px;
+  clear: both;
   width: 100%;
 }

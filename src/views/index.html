@@ -33,15 +33,17 @@
 					</ul>
 				</div>
 			</nav>
-
+			<div class='pushfooter'>
 			<div class='container'>
 				<div class='text-right' ng-show='root.userLoggedIn'> You are currently signed in as <span id='userName'>{{root.user}} </span> </div>
 				<main ng-view> </main>
 			</div>
-			<footer class='panel-footer footer'>
-				<p class='text-center'> @MaxJacobsen </p>
-			</footer>
 		</div>
+		<footer class='panel-footer footer'>
+			<p class='text-center'> @MaxJacobsen </p>
+		</footer>
+
 	</body>
+
 
 </html>

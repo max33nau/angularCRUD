@@ -4,12 +4,10 @@ var router = express.Router();
 var playerHandler = require('./handlers/player-handler');
 
 module.exports = function searchPlayers(authenticat) {
-  // router.get('/find', playerHandler.getPlayerByName);
   router.get('/', authenticat.tokenAuth, playerHandler.getAll);
-  // router.get('/:id', playerHandler.getPlayerById);
-  router.post('/', playerHandler.createPlayer);
-  // router.put('/:id', playerHandler.updateWholeObject);
-  // router.patch('/:id', playerHandler.updatePlayerInfo);
-  // router.delete('/:id', playerHandler.removePlayer);
+  router.post('/',authenticat.tokenAuth,authenticat.roleAuth(), playerHandler.createPlayer);
+  router.get('/find/:playerName',authenticat.tokenAuth, playerHandler.getPlayerByName);
+  router.put('/:id',authenticat.tokenAuth, authenticat.roleAuth(), playerHandler.updatePlayerInfo);
+  router.delete('/:id',authenticat.tokenAuth,authenticat.roleAuth(), playerHandler.removePlayer);
   return router;
 }
