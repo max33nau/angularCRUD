@@ -1,3 +1,4 @@
+'use strict';
 var app = angular.module('myApp');
 
 app.controller('adminCtrl',['$scope', '$http', function($scope,$http) {
@@ -16,8 +17,8 @@ app.controller('adminCtrl',['$scope', '$http', function($scope,$http) {
     $scope.players = response.data;
   })
   .catch(function(error){
-    $scope.error = 'Something went wrong getting players from the database'
-  })
+    $scope.error = 'Something went wrong getting players from the database';
+  });
   $scope.admin.createPlayer = function() {
     $scope.error = '';
     $scope.success = '';
@@ -34,8 +35,8 @@ app.controller('adminCtrl',['$scope', '$http', function($scope,$http) {
     })
     .catch(function(error){
       $scope.error = 'The right criteria was not met for adding a new player';
-    })
-  }
+    });
+  };
 
   $scope.admin.updatePlayer = function(player,updatePlayer) {
     $scope.admin.error = '';
@@ -57,8 +58,8 @@ app.controller('adminCtrl',['$scope', '$http', function($scope,$http) {
     })
     .catch(function(error){
       $scope.admin.error = 'Update player went wrong';
-    })
-  }
+    });
+  };
 
   $scope.admin.deletePlayer = function(player) {
     $scope.admin.error = '';
@@ -78,12 +79,9 @@ app.controller('adminCtrl',['$scope', '$http', function($scope,$http) {
         }
       })
       .catch(function(error){
-        console.log(error)
+        console.log(error);
         $scope.admin.error = 'Delete attempt was unsuccessful';
-      })
+      });
     }
-
-  }
-
-
+  };
 }]);

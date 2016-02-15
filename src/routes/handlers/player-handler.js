@@ -35,7 +35,7 @@ player_handler.createPlayer = function(request, response) {
   newPlayer.yearsInTheLeauge = request.body.yearsInTheLeauge;
   newPlayer.save()
     .then(function(player){
-      response.json(player)
+      response.json(player);
     })
     .catch(function(error){
       response.send(error);
@@ -43,6 +43,13 @@ player_handler.createPlayer = function(request, response) {
 };
 
 player_handler.updatePlayerInfo = function(request, response) {
+  if(request.body.name) {
+    request.body.name = request.body.name.toUpperCase();
+  } else if (request.body.team) {
+    request.body.team = request.body.team.toUpperCase();
+  } else if (request.body.position) {
+    request.body.position = request.body.position.toUpperCase();
+  }
   Player.findByIdAndUpdate(request.params.id, request.body)
     .then(function (player) {
       response.send(player);

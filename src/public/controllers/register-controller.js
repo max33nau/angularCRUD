@@ -1,3 +1,4 @@
+'use strict';
 var app = angular.module('myApp');
 
 app.controller('registerCtrl',['$scope', '$http', function($scope,$http) {
@@ -7,13 +8,13 @@ app.controller('registerCtrl',['$scope', '$http', function($scope,$http) {
     $scope.success = '';
     $scope.error = '';
     if(localStorage.getItem('token')) {
-      $scope.error = 'You are already logged in.'
+      $scope.error = 'You are already logged in.';
       return;
     } else {
       var user = {
         username: $scope.username,
         password: $scope.password
-      }
+      };
       $http.post('/user/signup', JSON.stringify(user))
         .then(function(response){
           localStorage.setItem('token', response.data.token);
@@ -23,7 +24,7 @@ app.controller('registerCtrl',['$scope', '$http', function($scope,$http) {
         .catch(function(error){
           $scope.error = 'Taken Username or Invalid Password';
           console.log(error);
-        })
+        });
     }
-  }
+  };
 }]);

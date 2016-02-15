@@ -1,3 +1,4 @@
+'use strict';
 var app = angular.module('myApp');
 
 app.controller('playerCtrl',['$scope', '$http', function($scope,$http) {
@@ -15,8 +16,8 @@ app.controller('playerCtrl',['$scope', '$http', function($scope,$http) {
     $scope.players = response.data;
   })
   .catch(function(error){
-    $scope.error = 'Something went wrong getting players from the database'
-  })
+    $scope.error = 'Something went wrong getting players from the database';
+  });
 
   $scope.player.search = function(playerName) {
     $scope.searchedPlayer = {};
@@ -33,12 +34,11 @@ app.controller('playerCtrl',['$scope', '$http', function($scope,$http) {
         $scope.searchedPlayer = response.data;
       } else {
         $scope.searchedPlayer.notFound = true;
-        $scope.searchedPlayer.error = 'Player Not Found'
+        $scope.searchedPlayer.error = 'Player Not Found';
       }
-
     })
     .catch(function(error){
-      $scope.error = 'Something went wrong getting players from the database'
-    })
-  }
+      $scope.error = 'Something went wrong getting players from the database';
+    });
+  };
 }]);

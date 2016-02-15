@@ -1,6 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
-var my = require('./configDBandServer');
+var my = require('./config/configDBandServer');
 var db;
 var dbData = {
   start: function start(callback) {

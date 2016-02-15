@@ -1,3 +1,5 @@
+'use strict';
+
 var app = angular.module('myApp');
 
 app.controller('loginCtrl',['$scope', '$http', '$location', function($scope,$http, $location) {
@@ -7,10 +9,10 @@ app.controller('loginCtrl',['$scope', '$http', '$location', function($scope,$htt
     $scope.success = '';
     $scope.error = '';
     if(localStorage.getItem('token')) {
-      $scope.error = 'You are already logged in.'
+      $scope.error = 'You are already logged in.';
       return;
     } else {
-      var authorization = 'Basic ' + btoa($scope.username + ':' + $scope.password);;
+      var authorization = 'Basic ' + btoa($scope.username + ':' + $scope.password);
       $http({
         url: 'user/signin',
         method: 'GET',
@@ -25,5 +27,5 @@ app.controller('loginCtrl',['$scope', '$http', '$location', function($scope,$htt
         $scope.error = 'Invalid username/password';
       });
     }
-  }
+  };
 }]);

@@ -4,9 +4,8 @@ const path = require('path');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const my = require('./config/configDBandServer');
-const dbData = require('./config/database');
+const dbData = require('./database');
 const mainPage = require('./routes/route-main');
 const searchPlayers = require('./routes/route-playerInfo');
 
@@ -41,7 +40,7 @@ const authenticat = new Authenticat(connection);
    /**** ROUTES ****/
    app.use('/user', authenticat.router); // Authentication
    app.use('/', mainPage());
-   app.use('/players', searchPlayers(authenticat));
+   app.use('/players',authenticat.tokenAuth, searchPlayers(authenticat));
 
    /**** ERROR HANDLING ****/
    app.use(function(request,response,next) {
@@ -68,5 +67,6 @@ const authenticat = new Authenticat(connection);
     };
   };
   mainApp.app = app;
+  mainApp.authenticat = authenticat;
   return mainApp;
 };

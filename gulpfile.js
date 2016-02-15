@@ -15,7 +15,7 @@ gulp.task('watch-test', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['./src/*.js','./src/**/*.js','./test/testAngular.js'])
+  return gulp.src(['./src/*.js','./src/**/*.js', '!./src/public/js/vendor/**','./test/testAngular.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(stylish));
 });

@@ -1,3 +1,4 @@
+'use strict';
 var app = angular.module('myApp', ['ngRoute']);
 
 app.config(['$routeProvider', '$httpProvider', function($routeProvider) {
@@ -52,5 +53,5 @@ app.controller('mainCtrl', ['$rootScope','$scope', '$http', function($rootScope,
   $scope.logout = function() {
     $rootScope.root = null;
     localStorage.clear();
-  }
+  };
 }]);
