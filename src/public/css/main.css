@@ -1,6 +1,10 @@
+
 .input-text {
   width: 300px;
   max-width: 100%;
+}
+.player-label {
+  margin-bottom: 5px;
 }
 
 .result {
@@ -14,7 +18,7 @@
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 5px;
   width: 100%;
 }

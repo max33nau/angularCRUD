@@ -29,7 +29,48 @@
   </div>
   <br>
   <button ng-click='admin.createPlayer()' class="btn btn-default">Create Player</button>
+  <p class='bg-success result'> {{success}} </p>
 </fieldset>
-<div ng-hide='addplayer'> EDIT PLAYERS </div>
+<div ng-hide='addplayer'>
+  <hr>
+  <div ng-repeat='player in players'>
+    <h5 class='text-center'> Player Info </h5>
+    <div class='player-label'>
+      Name:
+      <label ng-hide='editing'> {{player.name}} </label>
+      <input ng-show='editing' type="text" ng-model='player.name' class="input-text" />
+    </div>
+    <div class='player-label'>
+      Team:
+      <label ng-hide='editing'> {{player.team}} </label>
+      <input ng-show='editing' type="text" ng-model='player.team' class="input-text" />
+    </div>
+    <div class='player-label'>
+      Age:
+      <label ng-hide='editing'> {{player.age}} </label>
+      <input ng-show='editing' type="text" ng-model='player.age' class="input-text" />
+    </div>
+    <div class='player-label'>
+      Position:
+      <label ng-hide='editing'> {{player.position}} </label>
+      <input ng-show='editing' type="text" ng-model='player.position' class="input-text" />
+    </div>
+    <div class='player-label'>
+      Rookie:
+      <label ng-hide='editing'> {{player.rookie}} </label>
+      <label ng-show='editing' class="radio-inline"><input type="radio" ng-model='playerInfo.rookie' value="true"></input> True </label>
+      <label ng-show='editing' class="radio-inline"><input type="radio" ng-model='playerInfo.rookie' value="false"></input> False </label>
+    </div>
+    <div class='player-label'>
+      Years In The League:
+      <label ng-hide='editing'> {{player.yearsInTheLeauge}} </label>
+      <input ng-show='editing' type="text" ng-model='player.yearsInTheLeauge' class="input-text" />
+    </div>
+    <button class="btn btn-primary" ng-click='editing = !editing'> Edit </button>
+    <button class="btn btn-success"> Save </button>
+    <button class="btn btn-danger"> Delete </button>
+    <hr>
+  </div>
+</div>
 <br>
 <p class='bg-danger result'> {{error}} </p>
