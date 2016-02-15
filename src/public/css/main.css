@@ -20,7 +20,14 @@
 .navInline {
   margin-bottom: 5px;
 }
+.searchOnePlayer {
+  margin-top: 50px;
+}
+
+
 footer {
+  position: fixed;
+  bottom: 0px;
   margin-top: 20px;
   clear: both;
   width: 100%;

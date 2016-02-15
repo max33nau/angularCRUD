@@ -16,11 +16,13 @@ player_handler.getAll = function(request, response) {
 
 player_handler.getPlayerByName = function(request, response) {
   var playerName = request.params.playerName.toUpperCase();
-  Player.find({ name: playerName } ).then(function (player) {
-
-  }).then(null, function (error) {
-
-  });
+  Player.findOne({ name: playerName } )
+    .then(function (player) {
+      response.json(player);
+    })
+    .catch(function (error) {
+      response.send(error);
+    });
 };
 
 player_handler.createPlayer = function(request, response) {
