@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>Angular Crud</title>
+		<meta charset="UTF-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<script type="text/javascript" src='js/vendor/angular-route.min.js'></script>
+		<script type="text/javascript" src='controllers/main-controller.js'></script>
+		<script type="text/javascript" src='controllers/register-controller.js'></script>
+		<script type="text/javascript" src='controllers/login-controller.js'></script>
+		<script type="text/javascript" src='controllers/player-controller.js'></script>
+		<script type="text/javascript" src='controllers/admin-controller.js'></script>
+	</head>
+
+	<body ng-app='myApp' ng-controller='mainCtrl'>
+
+			<nav class='navbar navbar-inverse'>
+				<div class="container-fluid">
+					<div class='navbar-header navbar-brand'> Player Info App </div>
+					<ul class='nav navbar-nav'>
+						<li><a href="#/">Home</a></li>
+						<li><a href="#/searchPlayer">Search For Player</a></li>
+						<li><a href="#/login">Login</a></li>
+						<li><a href="#/register">Register</a></li>
+						<li ><a href='#/admin' ng-show='root.admin'>Admin</a></li>
+						<li ><a href='#/'ng-click=logout() ng-show='root.userLoggedIn'>Logout</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div class='pushfooter'>
+			<div class='container'>
+				<div class='text-right' ng-show='root.userLoggedIn'> You are currently signed in as <span id='userName'>{{root.user}} </span> </div>
+				<main ng-view> </main>
+			</div>
+		</div>
+		<footer class='panel-footer footer'>
+			<p class='text-center'> @MaxJacobsen </p>
+		</footer>
+
+	</body>
+
+
+</html>

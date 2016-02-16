@@ -1,0 +1,36 @@
+
+<div ng-show='root.notAuthorized'> You must be logged in to see this content </div>
+
+<div ng-hide ='root.notAuthorized'>
+  <h3 class='text-center'> NBA Player Search </h3>
+  <div class='text-center'>
+    <input type='text' ng-model='nameOfPlayer' name='name'> </input>
+    <button class='btn-primary' ng-click=player.search(nameOfPlayer)  value='Search'>Search For Player</button>
+    <br>
+    <br>
+    <br>
+    <button class='btn-success' ng-click='showAll = true; showOne = false'  value='Search'>Show All Player Names</button>
+  </div>
+
+  <div ng-show='showAll'>
+    <h5> List of player names to search for: </h5>
+    <ul ng-repeat='playerInfo in players'>
+      <li class=list> {{playerInfo.name}} </li>
+    </ul>
+  </div>
+
+  <div ng-show='showOne' class='searchOnePlayer'>
+    <div ng-show='searchedPlayer.notFound'>
+      {{searchedPlayer.error}}
+    </div>
+    <div ng-hide='searchedPlayer.notFound'>
+      <h5 id='playerName'> {{searchedPlayer.name}} </h5>
+      <ul 'playerList'>
+        <li class='player-list-info'> Age: {{searchedPlayer.age}} </li>
+        <li class='player-list-info'> Team: {{searchedPlayer.team}} </li>
+        <li class='player-list-info'> Position: {{searchedPlayer.team}} </li>
+        <li class='player-list-info'> Years In the League: {{searchedPlayer.yearsInTheLeauge}} </li>
+      </ul>
+    </div>
+  </div>
+</div>

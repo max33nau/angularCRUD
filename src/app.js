@@ -4,52 +4,50 @@ const path = require('path');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
-const my = require('./configDBandServer');
+const my = require('./config/configDBandServer');
 const dbData = require('./database');
-const stats = require('./routes/routes-stats');
-const register = require('./routes/routes-register');
-const login = require('./routes/routes-login');
-const logout = require('./routes/routes-logout');
-const index = require('./routes/routes-home');
+const mainPage = require('./routes/route-main');
+const searchPlayers = require('./routes/route-playerInfo');
 
-var app = express();
-
-/**** VIEWS ****/
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-/**** PUBLIC ****/
-var publicPath = path.join( __dirname, 'www/public' );
-app.use(express.static( publicPath, { redirect : false } ) );
-
-
-/**** PARSING MODULES FOR APP ****/
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-/**** DEBUG FOR DEV ****/
-app.use(morgan('dev'));
-
-
-/**** ROUTES ****/
-app.use('/player', stats());
-app.use('/register', register());
-app.use('/login', login());
-app.use('/logout', logout());
-app.use('/home', index());
-
-/**** ERROR HANDLING ****/
-app.use(function(request,response,next) {
-  var error = new Error('Not Found');
-  error.status = 404;
-  next(error);
-});
-
+const Authenticat = require('authenticat');
+const connection = dbData.mongoose.createConnection(my.dbConnect + my.dbName);
+const authenticat = new Authenticat(connection);
 
 /**** START THE APP ****/
  module.exports = function start() {
+   var app = express();
+
+   /**** VIEWS ****/
+   var viewPath = path.join(__dirname, 'views');
+   app.set('views', viewPath);
+   app.set('view engine', 'jade');
+   app.use( express.static( viewPath, { redirect : false } ) );
+
+   /**** PUBLIC ****/
+   var publicPath = path.join( __dirname, 'public' );
+   app.use(express.static( publicPath, { redirect : false } ) );
+
+
+   /**** PARSING MODULES FOR APP ****/
+   app.use(bodyParser.json());
+   app.use(bodyParser.urlencoded({ extended: false }));
+   app.use(cookieParser());
+
+   /**** DEBUG FOR DEV ****/
+   app.use(morgan('dev'));
+
+
+   /**** ROUTES ****/
+   app.use('/user', authenticat.router); // Authentication
+   app.use('/', mainPage());
+   app.use('/players',authenticat.tokenAuth, searchPlayers(authenticat));
+
+   /**** ERROR HANDLING ****/
+   app.use(function(request,response,next) {
+     var error = new Error('Not Found');
+     error.status = 404;
+     next(error);
+   });
   var mainApp = {};
 
   mainApp.start = function(callback) {
@@ -69,5 +67,6 @@ app.use(function(request,response,next) {
     };
   };
   mainApp.app = app;
+  mainApp.authenticat = authenticat;
   return mainApp;
 };

@@ -1,0 +1,34 @@
+
+.input-text {
+  width: 300px;
+  max-width: 100%;
+}
+.player-label {
+  margin-bottom: 5px;
+}
+
+.result {
+  width: 200px;
+  max-width: 100%;
+}
+
+#userName {
+  font-weight: bolder;
+  color: red;
+}
+
+.navInline {
+  margin-bottom: 5px;
+}
+.searchOnePlayer {
+  margin-top: 50px;
+}
+
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  margin-top: 20px;
+  clear: both;
+  width: 100%;
+}
