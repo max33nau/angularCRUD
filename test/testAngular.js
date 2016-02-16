@@ -44,7 +44,6 @@ describe('Test authenticat token-based authentication and Perform Angular CRUD',
       .then(function (response) {
         expect(response).to.have.status(200);
         expect(response.body.token);
-        userData.adminToken = response.body.token;
         done();
       })
       .catch(done);
@@ -62,12 +61,13 @@ describe('Test authenticat token-based authentication and Perform Angular CRUD',
       .catch(done);
   });
 
-  it('should allow the new admin user to sign in with the token', function (done) {
+  it('should allow the new admin user to sign in and get their token back', function (done) {
     chaiRequest.get('/user/signin')
       .auth('admin', 'max')
       .then(function (response) {
         expect(response).to.have.status(200);
         expect(response.body.token);
+        userData.adminToken = response.body.token;
         done();
       })
       .catch(done);
